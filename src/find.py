@@ -9,7 +9,6 @@ def bonus_box_resized_image_coordinates(compressed_image):
                     and 230 < image_pixels[x, y][1] < 256\
                     and 230 < image_pixels[x, y][2] < 256:
                 return x, y
-    log.info("Бонусные коробки не найдены")
     return -1, -1
 
 

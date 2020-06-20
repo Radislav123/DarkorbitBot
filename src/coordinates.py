@@ -4,7 +4,7 @@ from PIL import Image
 
 # делает скриншот номера карты и координат
 def take_coordinates_and_map_screenshot():
-    return take_screenshot((1642, 842, 1760, 852))
+    return take_screenshot((1695, 875, 1820, 885))
 
 
 def crop_map_from_coordinates_image(image):
