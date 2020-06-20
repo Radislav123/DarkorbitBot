@@ -1,4 +1,4 @@
-from src.service import to_sources
+from src.service import to_resources
 import src.find as find
 
 
@@ -23,5 +23,5 @@ def save_found_box(image, resized_image):
         for j in range(y - 10, y + 11):
             loaded[i, j] = (255, 0, 0)
 
-    inner_image.save(to_sources("found\\bonus_box.png"))
-    inner_resized_image.save(to_sources("found\\bonus_box_compressed.png"))
+    inner_image.save(to_resources("found\\bonus_box.png"))
+    inner_resized_image.save(to_resources("found\\bonus_box_compressed.png"))
