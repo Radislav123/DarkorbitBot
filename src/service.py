@@ -10,13 +10,6 @@ def from_sources(path: str):
     return "..\\resources\\" + path
 
 
-# image = Image.open(from_sources("Darkorbit.PNG"))
-def create_data(image: Image):
-    image_loaded = image.load()
-    return [(x, y, image_loaded[x, y][0], image_loaded[x, y][1], image_loaded[x, y][2])
-            for x in range(image.size[0]) for y in range(image.size[1])]
-
-
 def print_time(function, *args, **kwargs):
     start = time.time()
     value = function(*args, **kwargs)
