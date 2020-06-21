@@ -33,5 +33,8 @@ def find_new_place(current_coordinates, map_size):
         y -= 10
     else:
         x -= 10
-
     return get_screen_coordinates(x, y)
+
+
+def find_safe_zone():
+    return get_screen_coordinates(185, 20)
