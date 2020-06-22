@@ -25,14 +25,16 @@ def save_found_box_images(image, compressed_image, formatted_time, max_saves = 2
     x, y = image_coordinates
     for i in range(x - 1, x + 2):
         for j in range(y - 1, y + 2):
-            loaded[i, j] = (255, 0, 0)
+            if 0 <= i < 160 and 0 <= j < 90:
+                loaded[i, j] = (255, 0, 0)
 
     # то же самое, что выше, только для несжатого изображения, и точек теперь побольше
     loaded = inner_image.load()
     x, y = screen_coordinates
     for i in range(x - 10, x + 11):
         for j in range(y - 10, y + 11):
-            loaded[i, j] = (255, 0, 0)
+            if 0 <= i < 1600 and 0 <= j < 900:
+                loaded[i, j] = (255, 0, 0)
 
     # связать с логом через названия или еще один лог
     if get_saved_bonus_boxes_number() >= max_saves:

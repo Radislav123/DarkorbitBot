@@ -63,12 +63,16 @@ def get_coordinates_from_screen_coordinates(x, y = 0):
     return x - 1693, y - 889
 
 
-def check_coordinates_to_fly(map_size, x, y = 0):
+def check_coordinates_to_fly(map_size, current_coordinates, x, y = 0):
     if isinstance(x, Iterable):
         y = x[1]
         x = x[0]
     safe_bound = 10
-    return (safe_bound < x < map_size[0] - safe_bound) and (safe_bound < y < map_size[1] - safe_bound)
+    is_safe = (safe_bound < x < map_size[0] - safe_bound) and (safe_bound < y < map_size[1] - safe_bound)
+    too_long_x = abs(current_coordinates[0] - x) >= 5
+    too_long_y = abs(current_coordinates[1] - y) >= 5
+    too_long = too_long_x and too_long_y
+    return is_safe and too_long
 
 
 def get_new_place_screen_coordinates(current_coordinates, map_size):
@@ -81,7 +85,7 @@ def get_new_place_screen_coordinates(current_coordinates, map_size):
     x_offset, y_offset = add_offset_by_center(x_offset, y_offset, current_coordinates, map_size)
     x_offset, y_offset = add_offset_by_fourth(x_offset, y_offset, current_coordinates, map_size)
 
-    while not check_coordinates_to_fly(map_size, x, y):
+    while not check_coordinates_to_fly(map_size, current_coordinates, x, y):
         x = current_coordinates[0] + x_offset + random.randint(-random_bound, random_bound)
         y = current_coordinates[1] + y_offset + random.randint(-random_bound, random_bound)
 
