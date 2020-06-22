@@ -1,5 +1,20 @@
-from PIL import ImageGrab, ImageDraw
 import time
+
+
+def from_found(filename: str):
+    return "..\\resources\\found\\" + filename
+
+
+def to_found(filename: str):
+    return from_found(filename)
+
+
+def from_logs(filename: str):
+    return "..\\logs\\" + filename
+
+
+def to_logs(filename: str):
+    return from_logs(filename)
 
 
 def from_resources(filename: str):
@@ -18,30 +33,14 @@ def to_navigate(filename: str):
     return from_navigate(filename)
 
 
-def print_time(function, *args, **kwargs):
+def get_execution_time(function, *args, **kwargs):
     start = time.time()
     value = function(*args, **kwargs)
     end = time.time()
-    print(function.__name__ + " : " + str(end - start))
+    return end - start, value
+
+
+def print_execution_time(function, *args, **kwargs):
+    execution_time, value = get_execution_time(function, args, kwargs)
+    print(function.__name__ + " : execution_time : " + str(execution_time))
     return value
-
-
-def print_attributes(obj):
-    for name, value in obj.__dict__.items():
-        print(name + " : " + str(value))
-
-
-def take_screenshot(bbox):
-    return ImageGrab.grab(bbox = bbox)
-
-
-def take_screenshot_for_finding():
-    # соотношение сторон скриншота 16x9, так как это принудительно устанавливаемое соотношение при сжатии
-    # ну, и сжимать пропорционально проще
-    image = take_screenshot(bbox = (0, 100, 1600, 1000))
-    close_spaceship(image)
-    return image
-
-
-def close_spaceship(image):
-    ImageDraw.Draw(image).rectangle([870, 300, 1070, 540], fill = "black")

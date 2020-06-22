@@ -1,4 +1,5 @@
-from src.service import *
+from screenshot import *
+from service import *
 from PIL import Image
 
 

@@ -1,4 +1,3 @@
-import src.logger as log
 
 
 def bonus_box_resized_image_coordinates(compressed_image):
@@ -24,5 +23,6 @@ def bonus_box_image_coordinates(compressed_image):
 def bonus_box_screen_coordinates(compressed_image):
     x, y = bonus_box_image_coordinates(compressed_image)
     if (x, y) != (-1, -1):
+        # 100 так как скриншот делается в области (0, 1600, 100, 1000)
         y += 100
     return x, y
